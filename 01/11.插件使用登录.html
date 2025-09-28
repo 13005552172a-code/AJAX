@@ -63,26 +63,24 @@
       <form action="" class="form">
         <div class="space show"></div>
         <label for="username">账号名</label>
-        <input type="text" class="username" id="username" />
+        <input type="text" class="username" id="username" name="username" />
         <label for="password">密码</label>
-        <input type="password" class="password" id="password" />
+        <input type="password" class="password" id="password" name="password" />
         <button type="button">登录</button>
       </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./form-serialize.js"></script>
     <script>
       const space = document.querySelector(`.space`);
-      // const show = document.querySelector(`.show`);
-      // function alert(mess, issuccess) {
-      //   space.classList.add(`show`);
-      //   setTimeout(() => {
-      //     space.classList.remove(`show`);
-      //   }, 2000);
-      // }
-
       document.querySelector(`button`).addEventListener(`click`, () => {
-        const username = document.querySelector(`.username`).value;
-        const password = document.querySelector(`.password`).value;
+        // const username = document.querySelector(`.username`).value;
+        // const password = document.querySelector(`.password`).value;
+        // 插件-------------------------------------------------------------------------------------------------------------------------
+        const form = document.querySelector(`.form`);
+        const data = serialize(form, { hash: true, empty: true });
+        //解构
+        const { username, password } = data;
 
         if (username.length < 8) {
           // alert(`用户名必须大于8位`, false);
