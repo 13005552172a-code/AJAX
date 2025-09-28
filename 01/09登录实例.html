@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        /* background-color: aliceblue; */
+      }
+      .box {
+        margin: 50px auto;
+        width: 800px;
+        height: 600px;
+        background-color: #f3f3f3;
+        padding: 100px;
+        /* text-align: center; */
+        /* line-height: 600px; */
+      }
+      .show {
+        display: block;
+        height: 40px;
+        width: 200px;
+        font-size: 20px;
+        color: red;
+        text-align: center;
+        line-height: 40px;
+        /* background-color: aqua; */
+      }
+      h1 {
+        padding-left: 150px;
+        margin-bottom: 50px;
+      }
+      .form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 400px;
+        margin: 0 auto;
+      }
+      .username,
+      .password {
+        padding-left: 10px;
+        height: 35px;
+        border: 1px solid #f3f3f3;
+        border-radius: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <h1>欢迎,登录</h1>
+      <form action="" class="form">
+        <div class="space show"></div>
+        <label for="username">账号名</label>
+        <input type="text" class="username" id="username" />
+        <label for="password">密码</label>
+        <input type="password" class="password" id="password" />
+        <button type="button">登录</button>
+      </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      const space = document.querySelector(`.space`);
+      // const show = document.querySelector(`.show`);
+      // function alert(mess, issuccess) {
+      //   space.classList.add(`show`);
+      //   setTimeout(() => {
+      //     space.classList.remove(`show`);
+      //   }, 2000);
+      // }
+
+      document.querySelector(`button`).addEventListener(`click`, () => {
+        const username = document.querySelector(`.username`).value;
+        const password = document.querySelector(`.password`).value;
+
+        if (username.length < 8) {
+          // alert(`用户名必须大于8位`, false);
+          space.innerHTML = `用户名必须大于8位`;
+          space.style.backgroundColor = `green`;
+
+          return;
+        }
+        if (password.length < 6) {
+          space.innerHTML = `密码必须大于6位`;
+          space.style.backgroundColor = `green`;
+          return;
+        }
+        space.innerHTML = ``;
+        // console.log(`提交数据到服务器`);
+        // 通过axios发送到服务器里面
+        axios({
+          url: `https://hmajax.itheima.net/api/login`,
+          method: `post`,
+          data: {
+            username,
+            password,
+          },
+        })
+          .then((result) => {
+            space.style.backgroundColor = white;
+            console.log(result);
+          })
+          .catch((error) => {
+            space.style.backgroundColor = white;
+            console.log(error.response.data.message);
+          });
+      });
+    </script>
+  </body>
+</html>
