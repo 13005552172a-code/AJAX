@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      button {
+        background-color: rgb(0, 26, 255);
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        height: 30px;
+        width: 100px;
+        cursor: pointer;
+      }
+      .box {
+        display: none;
+        margin: 10px auto;
+        border-radius: 10px;
+        width: 500px;
+        height: 400px;
+        background-color: rgb(94, 240, 240);
+      }
+      .top {
+        height: 90px;
+        border-bottom: 1px solid #000000;
+        padding-top: 10px;
+        padding-left: 10px;
+        display: flex;
+      }
+      .top .x {
+        margin-left: 370px;
+        margin-top: -10px;
+        font-size: 30px;
+        color: #000;
+        cursor: pointer;
+      }
+      .bodys {
+        height: 190px;
+        border-bottom: 1px solid #000000;
+        padding-top: 10px;
+        padding-left: 10px;
+      }
+      .but {
+        display: flex;
+        height: 99px;
+        padding-left: 180px;
+      }
+      .left {
+        margin-top: 20px;
+        width: 100px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        color: #fff;
+        border-radius: 10px;
+        background-color: rgb(91, 121, 122);
+        cursor: pointer;
+      }
+      .right {
+        margin-left: 10px;
+        margin-top: 20px;
+        width: 200px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        color: #fff;
+        border-radius: 10px;
+        background-color: rgb(78, 88, 233);
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <button type="button" class="btn">显示弹框</button>
+    <div class="box">
+      <div class="top">
+        Model title
+        <div class="x">X</div>
+      </div>
+      <div class="bodys">Modal body text goes here</div>
+      <div class="but">
+        <div class="left">close</div>
+        <div class="right">Save changes</div>
+      </div>
+    </div>
+    <script>
+      const btn = document.querySelector(`.btn`);
+      const box = document.querySelector(`.box`);
+      const x = document.querySelector(`.x`);
+      const close = document.querySelector(`.left`);
+      let s = () => {
+        box.style.display = `none`;
+      };
+      // 点击就显示
+      btn.addEventListener(`click`, () => {
+        box.style.display = `block`;
+      });
+      x.addEventListener(`click`, s);
+      close.addEventListener(`click`, s);
+    </script>
+  </body>
+</html>
